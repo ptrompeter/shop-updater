@@ -8,7 +8,7 @@ import re
 import requests
 import sys
 
-def parse_file(filename, path):
+def parse_file(filename, path, weight_int=True):
     """Turn a specifically formatted text file into a dictionary with image location."""
     dict = {}
     file_path = os.path.join(path, filename)
@@ -17,12 +17,13 @@ def parse_file(filename, path):
         #file_dict["weight"] = file_path.readline()
         #file_dict["description"] = file_path.readline()
     match = re.match(r'^(\d+(\.\d)?)', dict["weight"])
-    try:
-        weight = int(match[1])
-    except ValueError:
-        weight = float(match[1])
-        weight = int(weight)
-    dict["weight"] = weight
+    if weight_int:
+        try:
+            weight = int(match[1])
+        except ValueError:
+            weight = float(match[1])
+            weight = int(weight)
+        dict["weight"] = weight
     root, ext = os.path.spitext(filename)
     dict["image_name"] = root + ".jpeg"
     return dict
