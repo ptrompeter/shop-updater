@@ -13,9 +13,9 @@ def parse_file(filename, path, weight_int=True):
     dict = {}
     file_path = os.path.join(path, filename)
     with open(file_path, "r") as f:
-        dict["name"], dict["weight"], dict["description"] = file_path.readlines()
-        #file_dict["weight"] = file_path.readline()
-        #file_dict["description"] = file_path.readline()
+        contents = f.readlines()
+        contents = [x.strip() for x in contents]
+        dict["name"], dict["weight"], dict["description"] = contents
     match = re.match(r'^(\d+(\.\d)?)', dict["weight"])
     if weight_int:
         try:
@@ -24,7 +24,7 @@ def parse_file(filename, path, weight_int=True):
             weight = float(match[1])
             weight = int(weight)
         dict["weight"] = weight
-    root, ext = os.path.spitext(filename)
+    root, ext = os.path.splitext(filename)
     dict["image_name"] = root + ".jpeg"
     return dict
 
@@ -37,5 +37,5 @@ def manage_script(path, url):
         dict = parse_file(file, path)
         upload_dict(dict, url)
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     manage_script(sys.argv[1], sys.argv[2])
