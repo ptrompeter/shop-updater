@@ -10,13 +10,14 @@ import sys
 def get_list_of_jpegs(path):
     """Get a list of jpegs in a directory"""
     file_list = os.listdir(path)
-    jpeg_list = [x for x in file_list if x[-4:]]
+    jpeg_list = [x for x in file_list if x[-4:] == "jpeg"]
     return jpeg_list
 
 def upload_file(path, file, url):
     """Access a file and post it via the requests module."""
     with open(os.join(path, file), 'rb') as f:
         r = requests.post(url, files={'file': f})
+        return r
 
 def manage_script(path, url):
     """Run the upload_file function for every file in a directory."""

@@ -10,7 +10,7 @@ def get_files(directory):
     """Return list of all files in a directory."""
     return os.listdir(directory)
 
-def handle_image(filename, source_dir="~/supplier-data/images", target_dir="~/supplier-data/images"):
+def handle_image(filename, source_dir="supplier-data/images", target_dir="supplier-data/images"):
     """Manage opening, modifying, and saving of a single image."""
     source_name = os.path.join(source_dir, filename)
     print("source:", source_name)
@@ -26,4 +26,10 @@ def handle_image(filename, source_dir="~/supplier-data/images", target_dir="~/su
             os.mkdir(target_dir)
         current_image.save(outfile, "JPEG")
 
-#handle_image("mango.tiff", "supplier-data/images", "supplier-data/target")
+def controller():
+    file_list = get_files("supplier-data/images")
+    for file in file_list:
+        if file[-4:] == "tiff":
+            handle_image(file)
+
+controller()

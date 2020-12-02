@@ -33,7 +33,7 @@ def upload_dict(dictionary, url):
     print(r.status_code)
 
 def manage_script(path, url):
-    for file in os.path.listdir(path):
+    for file in os.listdir(path):
         dict = parse_file(file, path)
         upload_dict(dict, url)
 

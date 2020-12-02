@@ -48,7 +48,7 @@ def health_email(recipient, subject):
 def controller(recipient):
     message = health_test()
     if message:
-        email = health_email(recipeint, message)
+        email = health_email(recipient, message)
         send_email(email)
 
 if __name__ == "__main__":

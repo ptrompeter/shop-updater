@@ -22,7 +22,7 @@ def generate_email(recipient, sender="automation@example.com", subject=default_s
     mime_type, _ = mimetypes.guess_type(attachment_path)
     mime_type, mime_subtype = mime_type.split('/', 1)
     with open(attachment_path, 'rb') as ap:
-        message.add_attachement(ap.read(),
+        message.add_attachment(ap.read(),
                                 maintype=mime_type,
                                 subtype=mime_subtype,
                                 filename=attachment_filename)
