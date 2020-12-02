@@ -9,7 +9,7 @@ import smtplib
 
 default_subject = "Upload Completed - Online Fruit Store"
 default_body = "All fruits are uploaded to our website successfully.  A detailed list is attached to this email."
-def generate_email(recipient, sender="automation@example.com" subject=default_subject, body=default_body, attachment_path="/tmp/processed.pdf"):
+def generate_email(recipient, sender="automation@example.com", subject=default_subject, body=default_body, attachment_path="/tmp/processed.pdf"):
     """Generate an email """
     message = email.message.EmailMessage()
     message["From"] = sender
